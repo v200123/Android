@@ -14,12 +14,13 @@ import java.util.List;
 import java.util.UUID;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-public class CrimePageActivity extends FragmentActivity {
+public class CrimePageActivity extends AppCompatActivity {
     public final static String EXTRA_CRIME_ID = "com.just.coffee.page.crime_ID";
     private List<Crime> mCrimes;
 
@@ -30,7 +31,14 @@ public class CrimePageActivity extends FragmentActivity {
         mCrimes = CrimeLab.getCrimeLab(this).getCrimes();
         ViewPager viewPager = findViewById(R.id.activity_crime_view_page);
         UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
-
+        //Todo  加入输入的是空白的，就删除这个Crime
+//        if (mCrimes.size()!=0) {
+//        if(mCrimes.get(mCrimes.size()-1).getTitle()==null)
+//        {
+//                mCrimes.remove(mCrimes.size()-1);
+//                Log.d("delect", "onCreate: " + "删除成功");
+//            }
+//        }
 
 
         viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
@@ -50,11 +58,13 @@ public class CrimePageActivity extends FragmentActivity {
             if(mCrimes.get(i).getId().equals(crimeId))
             {
                 viewPager.setCurrentItem(i);
-                Log.d("setCurrentltem", "onCreate:  "+String.valueOf(i));
+//                Log.d("setCurrentltem", "onCreate:  "+String.valueOf(i));
                 break;
             }
         }
     }
+
+
 
     public static Intent newIntent(Context context, UUID crimeId)
     {

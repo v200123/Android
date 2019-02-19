@@ -100,13 +100,14 @@ public class CrimeFragment extends Fragment {
         return;
 
         if(requestCode == 1)
-        {Date date = (Date) data.getSerializableExtra(DateFragment.EXTRA_CRIME_DATE);
+        {
+            Date date = (Date) data.getSerializableExtra(DateFragment.EXTRA_CRIME_DATE);
         mCrime.setDate(date);
             updateDate();
         }
     }
 
     private void updateDate() {
-        mDateButton.setText(new SimpleDateFormat("yy/MM/dd HH:mm:ss").format(mCrime.getDate()));
+        mDateButton.setText(new SimpleDateFormat("yy/MM/dd HH:mm").format(mCrime.getDate()));
     }
 }
