@@ -40,7 +40,6 @@ public class CrimePageActivity extends AppCompatActivity {
 //            }
 //        }
 
-
         viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {

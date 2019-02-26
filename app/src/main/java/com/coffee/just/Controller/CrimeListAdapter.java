@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import com.coffee.just.Controller.activity.CrimePageActivity;
 import com.coffee.just.Fragment.CrimeListFragment;
 import com.coffee.just.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -34,6 +36,7 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.View
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater =LayoutInflater.from(parent.getContext());
         View view =layoutInflater.inflate(R.layout.list_item_crime,parent,false);
+
         return new ViewHolder(view);
     }
 
@@ -47,6 +50,10 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.View
     @Override
     public int getItemCount() {
         return mCrimes.size();
+    }
+
+    public void serCrime(List<Crime> crimes){
+        mCrimes =crimes;
     }
 
 
@@ -66,7 +73,7 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.View
         public void bindCrime(Crime crime){
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(mCrime.getDate().toString());
+            mDateTextView.setText(new SimpleDateFormat("yyyy年MM月dd日 HH时mm分" ).format(mCrime.getDate()));
             mCheckBoxView.setChecked(mCrime.isSolved());
         }
 

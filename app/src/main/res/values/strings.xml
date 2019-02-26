@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CriminalIntent</string>
+    <string name="app_name">犯错记录器</string>
     <string name="crime_title">请输入标题</string>
     <string name="Title">标题</string>
     <string name="Detalis">日期</string>
@@ -7,4 +7,8 @@
     <string name="date_pick_title">犯罪时间</string>
     <string name="time_picker_title">时间选择</string>
     <string name="crime_new">添加Crime</string>
+    <string name="crime_delect">删除当前</string>
+    <string name="fragment_crime_noCrime">没有添加犯罪记录</string>
+    <string name="fragment_crime_visible_addCrime">添加记录</string>
+    <string name="GotoMap">发生的位置</string>
 </resources>

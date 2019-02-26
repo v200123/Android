@@ -1,5 +1,7 @@
 package com.coffee.just.Controller;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.text.format.DateFormat;
 
 import java.text.SimpleDateFormat;
@@ -9,7 +11,8 @@ import java.util.UUID;
 
 public class Crime {
 
-    private UUID id;
+    private UUID mId;
+
 
     public Date getDate() {
        return mDate;
@@ -41,14 +44,18 @@ public class Crime {
     private boolean mSolved;
 
     public Crime() {
-        id = UUID.randomUUID();
+        this(UUID.randomUUID());
+    }
+
+    public Crime(UUID id) {
+        mId = id;
         mDate =new Date();
     }
 
     @Override
     public String toString() {
         return "Crime{" +
-                "id=" + id +
+                "id=" + mId +
                 ", mDate=" + mDate +
                 ", mSolved=" + mSolved +
                 ", mTitle='" + mTitle + '\'' +
@@ -58,7 +65,7 @@ public class Crime {
     private String  mTitle;
 
     public UUID getId() {
-        return id;
+        return mId;
     }
 
 //    public void setId(UUID id) {

@@ -26,6 +26,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:id="@+id/DateButton"/>
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+
+        android:text="@string/GotoMap"
+        android:id="@+id/MapButton"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,4 +41,6 @@
         android:layout_marginRight="16dp"
         android:id="@+id/checked"
         android:text="@string/Solved"/>
+
+
 </LinearLayout>

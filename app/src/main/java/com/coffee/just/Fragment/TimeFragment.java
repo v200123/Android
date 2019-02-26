@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TimePicker;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.coffee.just.R;
 
 import java.util.Date;
@@ -27,7 +28,6 @@ public class TimeFragment extends DialogFragment {
 
         Date date = (Date) getArguments().getSerializable(ARG_TIME);
         View  v= LayoutInflater.from(getActivity()).inflate(R.layout.fragment_crime_time_picker,null);
-
         return new AlertDialog.Builder(getActivity())
                     .setView(v)
                     .setTitle(R.string.time_picker_title)
