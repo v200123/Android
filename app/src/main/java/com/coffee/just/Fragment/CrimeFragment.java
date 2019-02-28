@@ -36,9 +36,6 @@ import com.coffee.just.Controller.CrimeLab;
 import com.coffee.just.Controller.activity.CrimeMapActivity;
 import com.coffee.just.Controller.activity.CrimePageActivity;
 import com.coffee.just.R;
-import com.coffee.just.View.ClockView;
-import com.coffee.just.View.MyViewActivity;
-
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,7 +57,6 @@ public class CrimeFragment extends Fragment {
     private Button mDateButton;
     private CheckBox mSolved;
     private Button mJumpMap;
-    private Button Jump;
 //    private MapView mMapView;
 //    private LocationClient  locationClient;
 //    private LocationClientOption  option;
@@ -132,11 +128,6 @@ public class CrimeFragment extends Fragment {
         mTitleField = v. findViewById(R.id.crime_title);
 //        Log.d("mCrime",mCrime.toString());
         mTitleField.setText(mCrime.getTitle());
-        Jump = v.findViewById(R.id.jump);
-        Jump.setOnClickListener((view)->{
-            Intent i = new Intent(getActivity(), MyViewActivity.class);
-            startActivity(i);
-        });
         mDateButton=v.findViewById(R.id.DateButton);
         mSolved = v.findViewById(R.id.checked);
         mSolved.setChecked(mCrime.isSolved());
