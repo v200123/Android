@@ -1,7 +1,14 @@
 package com.coffee.just.Controller.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -17,6 +24,8 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.UiSettings;
 import com.coffee.just.R;
 
+import java.util.zip.Inflater;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +36,8 @@ public class CrimeMapActivity extends AppCompatActivity {
     private LocationClientOption option;
     private MyLocationData locationData;
     private MyLocationConfiguration mMyLocationConfiguration;
+    private IntentFilter mIntentFilter;
+    private NetworkChangeReceiver mNetworkChangeReceiver;
     boolean flag =true;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +49,10 @@ public class CrimeMapActivity extends AppCompatActivity {
          mBaiduMap = mMapView.getMap();
          mBaiduMap.setMyLocationEnabled(true);
         UiSettings uiSettings = mBaiduMap.getUiSettings();
+
+        mIntentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        mNetworkChangeReceiver = new NetworkChangeReceiver();
+        registerReceiver(mNetworkChangeReceiver,mIntentFilter);
 
         //获取定位信息
         locationClient  = new LocationClient(getApplicationContext());
@@ -81,6 +96,12 @@ public class CrimeMapActivity extends AppCompatActivity {
         mBaiduMap.setOnMapStatusChangeListener(listener);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+    }
 
     @Override
     protected void onPause() {
@@ -99,11 +120,28 @@ public class CrimeMapActivity extends AppCompatActivity {
 
         locationClient.stop();
         mBaiduMap.setMyLocationEnabled(false);
+        unregisterReceiver(mNetworkChangeReceiver);
         mMapView.onDestroy();
         mMapView=null;
         super.onDestroy();
     }
 
+    class NetworkChangeReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            if (networkInfo != null && networkInfo.isAvailable()) {
+                Toast.makeText(context, "网络可用，导航开始",
+                        Toast.LENGTH_SHORT).show();
+            }
+            } else {
+                Toast.makeText(context, "网络不可用",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
     class MyLocationListener extends BDAbstractLocationListener {
 
         @Override
