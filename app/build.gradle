@@ -40,4 +40,6 @@ dependencies {
     implementation 'androidx.viewpager:viewpager:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation files('libs/BaiduLBS_Android.jar')
+//    implementation 'com.github.LinYaoTian:LeavesLoading:1.0.1'
+//    implementation 'com.nineoldandroids:library:2.4.0'
 }

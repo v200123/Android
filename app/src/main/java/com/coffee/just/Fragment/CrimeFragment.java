@@ -77,9 +77,6 @@ public class CrimeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.getCrimeLab(getContext()).getCrime(crimeId); //这里获取到了点击后传入的ID，然后从Lab里查询到指定的Crime对象
-
-
-
         setHasOptionsMenu(true);
     }
 
@@ -132,11 +129,13 @@ public class CrimeFragment extends Fragment {
         mTitleField = v. findViewById(R.id.crime_title);
 //        Log.d("mCrime",mCrime.toString());
         mTitleField.setText(mCrime.getTitle());
+
         Jump = v.findViewById(R.id.jump);
         Jump.setOnClickListener((view)->{
             Intent i = new Intent(getActivity(), MyViewActivity.class);
             startActivity(i);
         });
+
         mDateButton=v.findViewById(R.id.DateButton);
         mSolved = v.findViewById(R.id.checked);
         mSolved.setChecked(mCrime.isSolved());

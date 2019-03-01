@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -23,7 +24,6 @@ import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.UiSettings;
 import com.coffee.just.R;
-
 import java.util.zip.Inflater;
 
 import androidx.annotation.Nullable;
@@ -135,7 +135,7 @@ public class CrimeMapActivity extends AppCompatActivity {
             if (networkInfo != null && networkInfo.isAvailable()) {
                 Toast.makeText(context, "网络可用，导航开始",
                         Toast.LENGTH_SHORT).show();
-            }
+
             } else {
                 Toast.makeText(context, "网络不可用",
                         Toast.LENGTH_SHORT).show();

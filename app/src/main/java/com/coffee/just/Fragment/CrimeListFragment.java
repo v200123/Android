@@ -6,8 +6,12 @@ package com.coffee.just.Fragment;
  */
 
 import android.Manifest;
+import android.annotation.TargetApi;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +42,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
 
 public class CrimeListFragment extends Fragment {
         private RecyclerView mCrimeRecycleView;
@@ -73,7 +80,6 @@ public class CrimeListFragment extends Fragment {
         });
         return  view;
     }
-
     private void initPremissions(){
         mPremissions.clear();//清空权限列表
 

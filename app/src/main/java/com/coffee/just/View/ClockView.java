@@ -55,6 +55,7 @@ public class ClockView extends View{
         canvas.drawCircle(x,y,radio,paint);//参数：坐标+半径
     }
 
+    @SuppressLint("HandlerLeak")
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -87,5 +88,7 @@ public class ClockView extends View{
         }
         return true;
     }
+
+
 }
 
